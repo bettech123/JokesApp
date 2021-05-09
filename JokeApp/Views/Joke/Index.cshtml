@@ -1,0 +1,50 @@
+﻿@model IEnumerable<JokeApp.Models.JokeModel>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Jokes</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+<form asp-action="Index" method="get">
+    <p>
+        <input type="search" name="JokeSearch" value="@ViewData[" GetJokeDetails"]" placeholder="Search jokes" style="width:500px" />
+        <input type="submit" value="Search" class="btn btn-primary" /> |
+        <a asp-action="Index" ><i fa-refresh></i> All Jokes</a>
+    </p>
+    
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JokeQuestion)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JokeQuestion)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.JokeId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.JokeId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.JokeId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
